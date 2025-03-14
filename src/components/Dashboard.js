@@ -26,39 +26,44 @@ const Dashboard = () => {
     }));
 
   return (
-    <div className="dashboard">
-      <h1>Expense Splitter</h1>
-      
+    <div className="dashboard container-fluid py-4">
+      <h1 className="text-center mb-4">Expense Splitter</h1>
+
       {/* Overview Section */}
-      <div className="overview">
-        <h2>Overview</h2>
-        <p><strong>Total Expenses:</strong> ${totalExpenses.toFixed(2)}</p>
-        <p><strong>Number of Friends:</strong> {friends.length}</p>
-        <h3>Unsettled Balances</h3>
-        {unsettledBalances.length > 0 ? (
-          <ul>
-            {unsettledBalances.map(({ name, balance }, index) => (
-              <li key={index}>
-                {name}: {balance > 0 ? `is owed $${balance.toFixed(2)}` : `owes $${Math.abs(balance).toFixed(2)}`}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>All balances are settled!</p>
-        )}
+      <div className="card mb-4 shadow-sm">
+        <div className="card-body">
+          <h2 className="card-title">Overview</h2>
+          <p className="card-text"><strong>Total Expenses:</strong> ₹{totalExpenses.toFixed(2)}</p>
+          <p className="card-text"><strong>Number of Friends:</strong> {friends.length}</p>
+          <h3>Unsettled Balances</h3>
+          {unsettledBalances.length > 0 ? (
+            <ul className="list-group list-group-flush">
+              {unsettledBalances.map(({ name, balance }, index) => (
+                <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                  <span>{name}:</span>
+                  <span className={balance > 0 ? 'text-success' : 'text-danger'}>
+                    {balance > 0 ? `is owed ₹${balance.toFixed(2)}` : `owes ₹${Math.abs(balance).toFixed(2)}`}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-muted">All balances are settled!</p>
+          )}
+        </div>
       </div>
 
       {/* Main Sections */}
-      <div className="dashboard-sections">
-        <section className="friends-section">
+      <div className="row">
+        <div className="col-md-4 mb-4">
           <FriendList friends={friends} setFriends={setFriends} />
-        </section>
-        <section className="expenses-section">
+        </div>
+        <div className="col-md-4 mb-4">
           <ExpenseList friends={friends} expenses={expenses} setExpenses={setExpenses} />
-        </section>
-        <section className="summary-section">
+        </div>
+        <div className="col-md-4 mb-4">
           <ExpenseSummary friends={friends} expenses={expenses} />
-        </section>
+        </div>
       </div>
     </div>
   );

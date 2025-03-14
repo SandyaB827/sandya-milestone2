@@ -54,3 +54,6 @@
   li button:nth-child(3):hover {
     background-color: #c82333;
   }
+  .list-group-item {
+    flex-wrap: wrap;
+  }

@@ -3,6 +3,15 @@
     max-width: 600px;
     margin: 0 auto;
   }
+
+  .list-group-item {
+    flex-wrap: wrap;
+  }
+  
+  .form-select[multiple] {
+    height: auto;
+    min-height: 100px;
+  }
   
   input, select {
     padding: 5px;
