@@ -1,0 +1,28 @@
+.dashboard {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .friends-section, .expenses-section, .summary-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-sections {
+      flex-direction: column;
+      align-items: center;
+    }
+  }

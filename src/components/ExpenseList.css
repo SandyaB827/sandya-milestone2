@@ -1,0 +1,26 @@
+.expense-list {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  input, select {
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  select[multiple] {
+    height: 100px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }

@@ -1,0 +1,9 @@
+.expense-summary {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  h3 {
+    margin-top: 20px;
+  }
