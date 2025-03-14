@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+Expense Splitter
+A simple web application to manage shared expenses among friends, built with React, Bootstrap, Formik, and Yup.
+Overview
+Expense Splitter allows users to:
+Add and manage friends (add, edit, delete).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Add and manage expenses (description, amount, payer, participants, date, split type).
 
-## Available Scripts
+Calculate and display total expenses and individual balances.
 
-In the project directory, you can run:
+Split expenses equally or with custom percentages.
 
-### `npm start`
+View an overview of total expenses, number of friends, and unsettled balances.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Amounts are displayed in Indian Rupees (₹), and balances are color-coded (green for "owed", red for "owes").
+Features
+Friend Management: Add, edit, or remove friends with unique names.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Expense Management: Add, edit, or delete expenses with optional date and custom/equal splits.
 
-### `npm test`
+Validation: Ensures all required fields (except date) are filled, with custom splits summing to 100%.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Responsive Design: Uses Bootstrap for a clean, mobile-friendly layout.
 
-### `npm run build`
+Overview Dashboard: Shows total expenses, friend count, and unsettled balances.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prerequisites
+Node.js (v14 or later recommended)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm (v6 or later recommended)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Setup
+Clone the repository:
+git clone <repository-url>
+cd expense-splitter
 
-### `npm run eject`
+Install dependencies:
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Start the development server:
+npm start
+The app will run at http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Usage
+Add Friends:
+Enter a name in the "Friends" section and click "Add Friend".
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Edit or remove friends using the buttons next to each name.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Add Expenses:
+Fill in the "Expenses" form: description, amount, payer, participants, and split type.
 
-## Learn More
+For custom splits, enter percentages for each participant (must sum to 100%).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Click "Add Expense" to save.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+View Summary:
+Check the "Overview" section for total expenses and unsettled balances.
 
-### Code Splitting
+See detailed balances in the "Summary" section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Edit/Delete:
+Use "Edit" to modify friends or expenses, and "Remove" to delete them.
 
-### Analyzing the Bundle Size
+Project Structure
+src/
+components/
+Dashboard.js: Main app layout with overview and sections.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+FriendList.js: Manages friend CRUD with validation.
 
-### Making a Progressive Web App
+ExpenseList.js: Manages expense CRUD with validation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ExpenseSummary.js: Displays total expenses and balances.
 
-### Advanced Configuration
+services/
+FriendService.js: Handles friend data with sessionStorage.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ExpenseService.js: Handles expense data with sessionStorage.
 
-### Deployment
+CalculationService.js: Calculates totals and splits.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+App.js: Root component.
 
-### `npm run build` fails to minify
+index.js: Entry point with Bootstrap import.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Dependencies
+react: ^18.x.x
+
+react-dom: ^18.x.x
+
+bootstrap: ^5.x.x (for styling)
+
+formik: ^2.x.x (for form management)
+
+yup: ^1.x.x (for validation)
+
+Notes
+Currency: Uses Indian Rupee (₹) symbol.
+
+Validation: Powered by Yup; all fields except date are required.
+
+Storage: Data persists in sessionStorage (clears on tab close).
+
+Navigation: Single-page app (SPA); no routing implemented yet.
+
+Future Enhancements
+Add React Router for page-based navigation.
+
+Use localStorage for persistent data across sessions.
+
+Enhance UI with Bootstrap modals or alerts for errors.
+
+- Below is a screenshot of the app in action:
+  ![App Screenshot](images/output1.png)
+  ![App Screenshot](images/output2.png)
+  ![App Screenshot](images/output3.png)
+  ![App Screenshot](images/output4.png)
+  ![App Screenshot](images/output5.png)
+  ![App Screenshot](images/output6.png)
