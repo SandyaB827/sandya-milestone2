@@ -9,14 +9,17 @@ const ExpenseSummary = ({ friends, expenses }) => {
   return (
     <div className="expense-summary">
       <h2>Summary</h2>
-      <p>Total Expenses: ${total.toFixed(2)}</p>
+      <p><strong>Total Expenses:</strong> ${total.toFixed(2)}</p>
       <h3>Balances</h3>
       <ul>
-        {Object.entries(balances).map(([id, balance]) => (
-          <li key={id}>
-            {friends.find(f => f.id === parseInt(id))?.name}: {balance > 0 ? `is owed $${balance.toFixed(2)}` : `owes $${Math.abs(balance).toFixed(2)}`}
-          </li>
-        ))}
+        {friends.map(friend => {
+          const balance = balances[friend.id] || 0;
+          return (
+            <li key={friend.id}>
+              {friend.name}: {balance > 0 ? `is owed $${balance.toFixed(2)}` : balance < 0 ? `owes $${Math.abs(balance).toFixed(2)}` : 'is settled'}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

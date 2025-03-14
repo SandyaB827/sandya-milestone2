@@ -3,6 +3,37 @@
     text-align: center;
   }
   
+  .overview {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .overview h2 {
+    margin-bottom: 15px;
+  }
+  
+  .overview p {
+    font-size: 1.1em;
+    margin: 5px 0;
+  }
+  
+  .overview h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .overview ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .overview li {
+    margin: 5px 0;
+  }
+  
   .dashboard-sections {
     display: flex;
     flex-wrap: wrap;

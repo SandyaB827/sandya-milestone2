@@ -8,13 +8,32 @@ export const CalculationService = {
       friends.forEach(f => (balances[f.id] = 0));
   
       expenses.forEach(exp => {
-        const splitAmount = exp.amount / exp.participants.length; // Equal split per person
-        // Credit the payer the full amount they paid
-        balances[exp.payerId] += exp.amount;
-        // Debit each participant their share, including the payer if they’re in participants
-        exp.participants.forEach(participantId => {
-          balances[participantId] -= splitAmount;
-        });
+        const { amount, payerId, participants, splitType = 'equal', customSplits = {} } = exp;
+  
+        if (splitType === 'equal') {
+          // Equal split logic (existing)
+          const splitAmount = amount / participants.length;
+          balances[payerId] += amount; // Credit payer
+          participants.forEach(participantId => {
+            balances[participantId] -= splitAmount; // Debit each participant
+          });
+        } else if (splitType === 'custom') {
+          // Custom split logic (percentage or share-based)
+          balances[payerId] += amount; // Credit payer full amount
+          let totalAssigned = 0;
+  
+          // Calculate based on customSplits (e.g., { friendId: percentage })
+          participants.forEach(participantId => {
+            const share = customSplits[participantId] || 0; // Percentage (0-100)
+            const participantAmount = (share / 100) * amount;
+            balances[participantId] -= participantAmount;
+            totalAssigned += participantAmount;
+          });
+  
+          // Ensure total matches expense amount (adjust payer if needed)
+          const discrepancy = amount - totalAssigned;
+          if (discrepancy !== 0) balances[payerId] -= discrepancy; // Adjust payer’s balance
+        }
       });
   
       return balances;

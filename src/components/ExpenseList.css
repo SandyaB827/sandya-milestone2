@@ -46,7 +46,7 @@
   }
   
   li button:nth-child(n+2) {
-    background-color: #007bff; /* Edit button */
+    background-color: #007bff;
   }
   
   li button:nth-child(n+2):hover {
@@ -54,9 +54,23 @@
   }
   
   li button:last-child {
-    background-color: #dc3545; /* Remove/Cancel button */
+    background-color: #dc3545;
   }
   
   li button:last-child:hover {
     background-color: #c82333;
+  }
+  
+  .custom-splits {
+    margin: 10px 0;
+  }
+  
+  .custom-splits div {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .custom-splits label {
+    min-width: 100px;
   }
