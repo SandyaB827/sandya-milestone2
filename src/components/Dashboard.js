@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import FriendList from './FriendList';
-import ExpenseList from './ExpenseList';
-import ExpenseSummary from './ExpenseSummary';
-import { FriendService } from '../services/FriendService';
-import { ExpenseService } from '../services/ExpenseService';
+import React from 'react';
 import { CalculationService } from '../services/CalculationService';
 import './Dashboard.css';
 
-const Dashboard = () => {
-  const [friends, setFriends] = useState(FriendService.getFriends());
-  const [expenses, setExpenses] = useState(ExpenseService.getExpenses());
-
-  useEffect(() => {
-    setFriends(FriendService.getFriends());
-    setExpenses(ExpenseService.getExpenses());
-  }, []);
-
+const Dashboard = ({ friends, expenses }) => {
   const totalExpenses = CalculationService.calculateTotal(expenses);
   const balances = CalculationService.calculateSplit(expenses, friends);
   const unsettledBalances = Object.entries(balances)
@@ -26,10 +13,8 @@ const Dashboard = () => {
     }));
 
   return (
-    <div className="dashboard container-fluid py-4">
-      <h1 className="text-center mb-4">Expense Splitter</h1>
-
-      {/* Overview Section */}
+    <div className="dashboard">
+      <h1 className="text-center mb-4">Expense Splitter Dashboard</h1>
       <div className="card mb-4 shadow-sm">
         <div className="card-body">
           <h2 className="card-title">Overview</h2>
@@ -50,19 +35,6 @@ const Dashboard = () => {
           ) : (
             <p className="text-muted">All balances are settled!</p>
           )}
-        </div>
-      </div>
-
-      {/* Main Sections */}
-      <div className="row">
-        <div className="col-md-4 mb-4">
-          <FriendList friends={friends} setFriends={setFriends} />
-        </div>
-        <div className="col-md-4 mb-4">
-          <ExpenseList friends={friends} expenses={expenses} setExpenses={setExpenses} />
-        </div>
-        <div className="col-md-4 mb-4">
-          <ExpenseSummary friends={friends} expenses={expenses} />
         </div>
       </div>
     </div>
